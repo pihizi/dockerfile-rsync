@@ -1,0 +1,14 @@
+rsyncd:
+  container_name: rsyncd
+  image: daryljocky/rsync
+  privileged: true
+  restart: always
+  ports:
+  - 873:873
+  volumes:
+  - /tmp/test2:/data 
+  - /data/var/log/rsyncd:/var/log/rsyncd
+  - /etc/localtime:/etc/localtime
+  - ./etc/rsyncd.d:/etc/rsyncd.d
+  - ./etc/rsyncd.conf:/etc/rsyncd.conf
+  entrypoint: /docker-entrypoint-rsyncd.sh
